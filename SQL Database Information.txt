@@ -1,11 +1,11 @@
 Creating Login System Table:
 
-CREATE TABLE users (
+CREATE TABLE userstwo (
 	idUsers int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	uidUsers TINYTEXT NOT NULL,
 	emailUsers TINYTEXT NOT NULL,
-	pwdUsers LONGTEXT NOT NULL
-);
+	pwsUsers LONGTEXT NOT NULL,
+	verified COMMENT "0=no, 1=yes"
+)
 
 Creating Pwd Reset Token Table:
 
@@ -25,8 +25,6 @@ CREATE TABLE VerifyAccount (
 	VerificationSelector TEXT NOT NULL,
 	VerificationToken LONGTEXT NOT NULL
 );
-
-INSERT INTO athletedatabase (fname, lname, sport, date_excused, departure_time) VALUES ('', '', '', '0000-00-00', '00:00:00'); 
 
 CREATE TABLE athletedatabase (
     travelID int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
