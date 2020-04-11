@@ -26,6 +26,8 @@ CREATE TABLE VerifyAccount (
 	VerificationToken LONGTEXT NOT NULL
 );
 
+Create the current Athlete Information Table:
+
 CREATE TABLE athletedatabase (
     travelID int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     fname varchar(255),
