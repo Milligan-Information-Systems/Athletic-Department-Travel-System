@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  adts:
+    image: composer:1.10
+    working_dir: /adts
+    command: php -S 0.0.0.0:8000 -t .
+    volumes: 
+      - .:/adts:cached
+      - ./vendor:/adts/vendor
+    ports:
+      - '8000:8000'
+
+volumes:
+  adts:
