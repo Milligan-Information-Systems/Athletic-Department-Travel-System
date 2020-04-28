@@ -8,6 +8,6 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost:8000/
+            url: http://milligantravelsystem.000webhostapp.com
         - \Helper\Acceptance
     step_decorators: ~        
