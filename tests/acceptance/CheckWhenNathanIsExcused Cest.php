@@ -33,21 +33,31 @@ class CheckWhenNathanIsExcusedCest
     {
         //Step 04: Filter Table
         $I->fillField('valueToSearch', 'Nathan');
+        $I->click('search');
         $I->see('Nathan', 'tr');
+        $I->dontSee('Juan', 'tr');
     }
 
     public function searchByLastName(AcceptanceTester $I)
     {
         //Step 04: Filter Table
         $I->fillField('valueToSearch', 'Hastings');
+        $I->click('search');
         $I->see('Hastings', 'tr');
+        $I->dontSee('Vasquez', 'tr');
     }
 
     public function searchBySport(AcceptanceTester $I)
     {
         //Step 04: Filter Table
         $I->fillField('valueToSearch', 'Basketball');
+        $I->click('search');
         $I->see('Hastings', 'tr');
+        $I->see('Cawood', 'tr');
+        $I->see('Desean', 'tr');
         $I->see('Basketball', 'tr');
+        $I->dontSee('Baseball', 'tr');
+        $I->dontSee('Volleyball', 'tr');
+        $I->dontSee('Julia', 'tr');
     }
 }
