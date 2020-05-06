@@ -1,3 +1,13 @@
+<?php require "header.php"; ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<?php 
+	require 'includes/dbh.inc.php'; 
+	$query = "SELECT * FROM athletedatabase2 ORDER BY date_excused DESC";
+	$result = mysqli_query($conn, $query);
+?>
+<div id="admin-page-spacer" style="height: 25px; background-color: gray;"></div>
+<div id="admin-table" class="table=responsive" style="background-color: gray; max-width: 1000px; margin-left: auto; margin-right: auto;">
 <div class="database-display-container">
 	<?php
 		if(isset($_POST['search']))
@@ -43,18 +53,18 @@
 				// search in all table columns
 				// using concat mysql function
 				$query = "SELECT * FROM athletedatabase2 WHERE CONCAT(fname, lname, date_excused, departure_time) LIKE '%".$valueToSearch."%' AND (sportnumber LIKE '%".$volleyball."%' OR sportnumber LIKE '%".$mensbasketball."%' OR sportnumber LIKE '%".$baseball."%' OR sportnumber LIKE '%".$crosscountry."%' OR sportnumber LIKE '%".$cycling."%' OR sportnumber LIKE '%".$esports."%' OR sportnumber LIKE '%".$golf."%' OR sportnumber LIKE '%".$menssoccer."%' OR sportnumber LIKE '%".$swimming."%' OR sportnumber LIKE '%".$tennis."%' OR sportnumber LIKE '%".$trackandfield."%' OR sportnumber LIKE '%".$triathlon."%' OR sportnumber LIKE '%".$mensvolleyball."%' OR sportnumber LIKE '%".$womensbasketball."%' OR sportnumber LIKE '%".$cheer."%' OR sportnumber LIKE '%".$dance."%' OR sportnumber LIKE '%".$womenssoccer."%' OR sportnumber LIKE '%".$softball."%') ORDER BY date_excused DESC";
-				$search_result = filterTable($query); 
+				$result = filterTable($query); 
 			} else {
 				$valueToSearch = $_POST['valueToSearch'];
 				// search in all table columns
 				// using concat mysql function
 				$query = "SELECT * FROM athletedatabase2 WHERE CONCAT(fname, lname, date_excused, departure_time) LIKE '%".$valueToSearch."%' ORDER BY date_excused DESC";
-				$search_result = filterTable($query);
+				$result = filterTable($query);
 			}
 		}
 		 else {
 			$query = "SELECT * FROM athletedatabase2 ORDER BY date_excused DESC";
-			$search_result = filterTable($query);
+			$result = filterTable($query);
 		}
 
 		// function to connect and execute the query
@@ -67,7 +77,7 @@
 
 	?>
 	<div id="database-display-form-container">
-	<form action="index.php" method="post">
+	<form class="admin-edit-page-form" action="admin-edit-page.php" method="post">
 		<input type="text" name="valueToSearch" placeholder="Search a name..."><br><br>
 		<div style="float: left; margin-left: 25%;">
 		<h1 style="font-size: 25px; margin-bottom: 10px;">Men's Sports</h1>
@@ -181,25 +191,55 @@
 		</div>
 		<div style="clear: both;">
 		<input type="submit" name="search" value="Filter"><br><br>
-		<table>
-			<tr>
-				<th>Athlete First Name</th>
-				<th>Athlete Last Name</th>
-				<th>Sport</th>
-				<th>Date Excused</th>
-				<th>Departure Time</th>
-			</tr>
-			<?php while($row = mysqli_fetch_array($search_result)):?>
-			<tr>
-				<td><?php echo $row['fname'];?></td>
-				<td><?php echo $row['lname'];?></td>
-				<td><?php echo $row['sport'];?></td>
-				<td><?php echo $row['date_excused'];?></td>
-				<td><?php echo $row['departure_time'];?></td>
-			</tr>
-			<?php endwhile;?>
+		<table id="editable_table" class="table table-bordered table-striped" style="max-width: 1000px;">
+			<thead>
+				<tr>
+					<th>Travel ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Sport</th>
+					<th>Date Excused</th>
+					<th>Departure Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php while($row = mysqli_fetch_array($result)):?>
+				<tr>
+					<td><?php echo $row['travelID'];?></td>
+					<td><?php echo $row['fname'];?></td>
+					<td><?php echo $row['lname'];?></td>
+					<td><?php echo $row['sport'];?></td>
+					<td><?php echo $row['date_excused'];?></td>
+					<td><?php echo $row['departure_time'];?></td>
+				</tr>
+				<?php endwhile;?>
+			</tbody>
 		</table>
+		<script>
+			$(document).ready(function(){  
+				 $('#editable_table').Tabledit({
+				  url:'action.php',
+				  columns:{
+				   identifier:[0, "travelID"],
+				   editable:[[1, 'fname'], [2, 'lname'], [3, 'sport'], [4, 'date_excused'], [5, 'departure_time'] ]
+				  },
+				  restoreButton:false,
+				  onSuccess:function(data, textStatus, jqXHR)
+				  {
+				   if(data.action == 'delete')
+				   {
+					$('#'+data.travelID).remove();
+				   }
+				  }
+				 });
+			 
+			});  
+		</script>
 		</div>
 	</form>
 	</div>
 </div>
+</div>
+<?php
+?>
+<?php require "footer.php"; ?>

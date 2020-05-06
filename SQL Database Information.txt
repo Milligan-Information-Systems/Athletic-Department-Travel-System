@@ -4,7 +4,8 @@ CREATE TABLE userstwo (
 	idUsers int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	emailUsers TINYTEXT NOT NULL,
 	pwsUsers LONGTEXT NOT NULL,
-	verified COMMENT "0=no, 1=yes"
+	verified COMMENT "0=no, 1=yes",
+	admin COMMENT "0=no, 1=yes"
 )
 
 Creating Pwd Reset Token Table:
@@ -26,13 +27,107 @@ CREATE TABLE VerifyAccount (
 	VerificationToken LONGTEXT NOT NULL
 );
 
-Create the current Athlete Information Table:
+Creating the main travel information table:
 
-CREATE TABLE athletedatabase (
+CREATE TABLE athletedatabase2 (
     travelID int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     fname varchar(255),
     lname varchar(255),
     sport varchar(255),
     date_excused date,
-    departure_time time
+    departure_time time,
+    sportnumber int(11)
 );
+
+Creating the tables for the Athlete Registry:
+
+CREATE TABLE baseball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE mensbasketball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE menssoccer (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE mensvolleyball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE crosscountry (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE cycling (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE esports (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE golf (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE swimming (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE tennis (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE trackandfield (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE triathlon (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE womensbasketball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE cheer (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE dance (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE womenssoccer (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE softball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)
+CREATE TABLE volleyball (
+    athleteID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    athletefname varchar(255),
+    athletelname varchar(255)
+)

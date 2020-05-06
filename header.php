@@ -6,7 +6,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 <link rel="stylesheet" href="styles.css">
 <title>Milligan Travel Database</title>
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="jquery-tabledit-1.2.3/jquery.tabledit.min.js"></script>
 <div class="header">
 	<div class="mobilenav">
 	  <div id="menuToggle">
@@ -51,7 +52,13 @@
 	}?>
 </div>
 <div class="spacer"></div>
-<body>
+<?php if (isset($_SESSION['userId'])) {
+	echo '
+<div id="siteheader" style="text-align: center; color: white; z-index: 5; font-family: Times New Roman !important; font-size: 50px !important; margin-bottom: 25px;">
+	Milligan Athletics Travel Database
+</div>';
+} ?>
+<body style="background-color: gray !important;">
 
 
 

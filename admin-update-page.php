@@ -1,3 +1,122 @@
+<?php require "header.php"; ?>
+<?php
+require 'includes/dbh.inc.php';
+
+if(isset($_POST['addsingleentry'])) {
+	if($_POST['team'] === '1001') {
+		$sport = 'Baseball';
+	} else if($_POST['team'] === '1002') {
+		$sport = 'Men\'s Basketball';
+	} else if($_POST['team'] === '1003') {
+		$sport = 'Men\'s Soccer';
+	} else if($_POST['team'] === '1004') {
+		$sport = 'Men\'s Volleyball';
+	} else if($_POST['team'] === '1005') {
+		$sport = 'Cross Country';
+	} else if($_POST['team'] === '1006') {
+		$sport = 'Cycling';
+	} else if($_POST['team'] === '1007') {
+		$sport = 'Esports';
+	} else if($_POST['team'] === '1008') {
+		$sport = 'Golf';
+	} else if($_POST['team'] === '1009') {
+		$sport = 'Swimming';
+	} else if($_POST['team'] === '1010') {
+		$sport = 'Tennis';
+	} else if($_POST['team'] === '1011') {
+		$sport = 'Track and Field';
+	} else if($_POST['team'] === '1012') {
+		$sport = 'Triathlon';
+	} else if($_POST['team'] === '1013') {
+		$sport = 'Women\'s Basketball';
+	} else if($_POST['team'] === '1014') {
+		$sport = 'Cheer';
+	} else if($_POST['team'] === '1015') {
+		$sport = 'Dance';
+	} else if($_POST['team'] === '1016') {
+		$sport = 'Women\'s Soccer';
+	} else if($_POST['team'] === '1017') {
+		$sport = 'Softball';
+	} else if($_POST['team'] === '1018') {
+		$sport = 'Volleyball';
+	}
+	$fname = $_POST['Athletefirstname'];
+	$lname = $_POST['Athletelastname'];
+	$sportnumber = $_POST['team'];
+	$date_excused = $_POST['date_excused'];
+	$departure_time = $_POST['departure_time'];
+	$query = "INSERT INTO athletedatabase2 (fname, lname, sport, date_excused, departure_time, sportnumber) VALUES ('$fname', '$lname', '$sport', '$date_excused', '$departure_time', '$sportnumber')";
+	mysqli_query($conn, $query);
+}
+?>
+<div class="update=form-1-container">
+	<h1 style="text-align: center; font-size: 25px;">Add Single Entry:</h1>
+	<form class="update-form-1" action="admin-update-page.php" method="post">
+		<input type="text" name="Athletefirstname" placeholder="Enter athlete's first name...">
+		<input type="text" name="Athletelastname" placeholder="Enter athlete's last name...">
+		<label for="team">Choose a team:</label>
+		<select id="team" name="team">
+			<option></option>
+			<option value="1001">Baseball</option>
+			<option value="1002">Men's Basketball</option>
+			<option value="1003">Men's Soccer</option>
+			<option value="1004">Men's Volleyball</option>
+			<option value="1005">Cross Country</option>
+			<option value="1006">Cycling</option>
+			<option value="1007">Esports</option>
+			<option value="1008">Golf</option>
+			<option value="1009">Swimming</option>
+			<option value="1010">Tennis</option>
+			<option value="1011">Track and Field</option>
+			<option value="1012">Triathlon</option>
+			<option value="1013">Women's Basketball</option>
+			<option value="1014">Cheer</option>
+			<option value="1015">Dance</option>
+			<option value="1016">Women's Soccer</option>
+			<option value="1017">Softball</option>
+			<option value="1018">Volleyball</option>
+		</select>
+		<label for="date">Date Excused:</label>
+		<input type="date" id="date_excused" name="date_excused">
+		<label for="time">Departure Time:</label>
+		<input type="time" id="departure_time" name="departure_time">
+		<input type="submit" name="addsingleentry" value="Add Entry">
+	</form>
+</div>
+<div class="update=form-2-container">
+	<h1 style="text-align: center; font-size: 25px; margin-top: 40px;">Add Entry for Entire Team:</h1>
+	<form class="update-form-2" action="updateteam.php" method="post">
+		<label for="team">Choose a team:</label>
+		<select id="team" name="team">
+			<option></option>
+			<option value="1001">Baseball</option>
+			<option value="1002">Men's Basketball</option>
+			<option value="1003">Men's Soccer</option>
+			<option value="1004">Men's Volleyball</option>
+			<option value="1005">Cross Country</option>
+			<option value="1006">Cycling</option>
+			<option value="1007">Esports</option>
+			<option value="1008">Golf</option>
+			<option value="1009">Swimming</option>
+			<option value="1010">Tennis</option>
+			<option value="1011">Track and Field</option>
+			<option value="1012">Triathlon</option>
+			<option value="1013">Women's Basketball</option>
+			<option value="1014">Cheer</option>
+			<option value="1015">Dance</option>
+			<option value="1016">Women's Soccer</option>
+			<option value="1017">Softball</option>
+			<option value="1018">Volleyball</option>
+		</select>
+		<label for="date">Date Excused:</label>
+		<input type="date" id="date_excused" name="date_excused">
+		<label for="time">Departure Time:</label>
+		<input type="time" id="departure_time" name ="departure_time">
+		<input type="submit" name="addsingleentry" value="Add Entry">
+	</form>
+</div>
+<div class="spacer"></div>
+<h1 style="text-align: center; font-size: 25px; margin: 40px;">Current Database:</h1>
 <div class="database-display-container">
 	<?php
 		if(isset($_POST['search']))
@@ -67,7 +186,7 @@
 
 	?>
 	<div id="database-display-form-container">
-	<form action="index.php" method="post">
+	<form action="admin-update-page.php" method="post">
 		<input type="text" name="valueToSearch" placeholder="Search a name..."><br><br>
 		<div style="float: left; margin-left: 25%;">
 		<h1 style="font-size: 25px; margin-bottom: 10px;">Men's Sports</h1>
@@ -203,3 +322,4 @@
 	</form>
 	</div>
 </div>
+<?php require "footer.php"; ?>

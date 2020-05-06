@@ -12,7 +12,7 @@
 		</form></div>';
 	}
 	else {
-		echo '<div class="login-card"><div class="desktop-login-logo-container"><div class="desktop-database-name">Milligan Athlete Travel Database</div><a href="index.php"><img id="mobilelogo" src="images/logo.png"></a></div><form action="includes/login2.inc.php" method="post">
+		echo '<div class="login-card"><div class="desktop-login-logo-container"><div class="desktop-database-name">Milligan Athletics Travel Database</div><a href="index.php"><img id="mobilelogo" src="images/logo.png"></a></div><form action="includes/login2.inc.php" method="post">
 		<input type="text" name="mailuid" placeholder="Milligan Email...">
 		<input type="password" name="pwd" placeholder="Password...">
 		<button type="submit" name="login-submit">Login</button>
